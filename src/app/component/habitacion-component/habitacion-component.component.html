@@ -1,5 +1,9 @@
-<p>habitacion-component works!</p>
+<div class="habitacion">
+  <h2>HABITACIÓN</h2>
+  <p>Corriente: {{ hayCorriente() ? 'ON' : 'OFF' }}</p>
 
-
-
-<p>{{ corriente }}</p>
+  <app-persiana-component
+    [corriente]="hayCorriente()"
+    (estadoCambiado)="onEstadoPersiana($event)">
+  </app-persiana-component>
+</div>

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-persiana-component',
@@ -8,16 +8,20 @@ import { Component, input } from '@angular/core';
 })
 export class PersianaComponentComponent {
 
-  corriente = input<boolean>;
+  corriente = input<boolean>(false); // property binding
+  estadoCambiado = output<string>(); // event binding
 
-  persiana = 1;
+  abierta = false; // estado interno propio
 
-  estadoPersiana = false;
+  get estado(): string {
+    return this.abierta ? 'ABIERTA' : 'CERRADA';
+  }
+  
 
-  onBajarSubir(event: Event) {
-    this.estadoPersiana = !this.estadoPersiana;
 
-    console.log(this.estadoPersiana);
+  onSubirBajar() {
+    this.abierta = !this.abierta;
+    this.estadoCambiado.emit(this.estado); // se lo envia al padre 
   }
 
 

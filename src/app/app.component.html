@@ -1,10 +1,25 @@
-<div>
-  <h1> {{ title }}</h1>
-  
-  <div class="estado">
-    <button (click)="onConectarDesconectar($event)">Conectar</button>
-    <span>Corriente vivienda {{ this.corriente ? 'CONECTADA' : 'DESCONECTADA' }}</span>
-  </div>
-</div>
+<div class="card">
+  <h1>{{ title }}</h1>
 
-<app-habitacion-component [corriente]=""></app-habitacion-component>
+  <div class="estado">
+    <button (click)="onConectarGeneral()">
+      {{ corrienteGeneral ? 'Desconectar' : 'Conectar' }} corriente vivienda
+    </button>
+    <span>Corriente General: {{ corrienteGeneral ? 'CONECTADA' : 'DESCONECTADA' }}</span>
+  </div>
+
+  <div class="estado">
+    <button (click)="onConectarHab1()">
+      {{ corrienteHab1 ? 'Desconectar' : 'Conectar' }} corriente Hab #1
+    </button>
+    <span>Corriente Hab #1: {{ corrienteHab1 ? 'CONECTADA' : 'DESCONECTADA' }}</span>
+  </div>
+
+  <p>Estado recibido: PERSIANA {{ estadoRecibido }}</p>
+
+  <app-habitacion-component
+    [corrienteGeneral]="corrienteGeneral"
+    [corrienteHabitacion]="corrienteHab1"
+    (estadoPersiana)="onEstadoPersiana($event)">
+  </app-habitacion-component>
+</div>

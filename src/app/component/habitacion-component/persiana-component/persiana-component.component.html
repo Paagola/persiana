@@ -1,1 +1,13 @@
-<p>persiana-component works!</p>
+<div class="persiana" [class.abierta]="abierta">
+    <p>PERSIANA</p>
+    <p>Estado: {{ estado }}</p>
+
+    <button  [disabled]="!corriente()" (click)="onSubirBajar()" >
+        {{ abierta ? 'Bajar' : 'Subir' }}
+    </button>
+
+    @if (!corriente()) { 
+        <span>Sin corriente: control deshabilitado</span>
+     }
+
+</div>

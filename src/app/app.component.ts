@@ -12,18 +12,20 @@ import { HabitacionComponentComponent } from './component/habitacion-component/h
 export class AppComponent {
   title = 'Control de vivienda';
 
-  corriente = false;
+  corrienteGeneral = false;
+  estadoRecibido = 'CERRADA';
+  corrienteHab1 = false;
 
-  onConectarDesconectar(event: Event) {
-    let conectDesc = event.target as HTMLButtonElement
+  onConectarGeneral() { 
+    this.corrienteGeneral = !this.corrienteGeneral; 
+  }
 
-    this.corriente = !this.corriente // Cambia el estado de corriente al contrario.
-  
-    if (this.corriente) {
-      conectDesc.innerText = "Desconectar"
-    } else {
-      conectDesc.innerText = "Conectar"
-    }
+  onConectarHab1() { 
+    this.corrienteHab1 = !this.corrienteHab1; 
+  }
+
+  onEstadoPersiana(estado: string) { 
+    this.estadoRecibido = estado; 
   }
 
 

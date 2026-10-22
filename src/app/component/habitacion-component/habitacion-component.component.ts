@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { PersianaComponentComponent } from './persiana-component/persiana-component.component';
 
 @Component({
@@ -9,8 +9,16 @@ import { PersianaComponentComponent } from './persiana-component/persiana-compon
 })
 export class HabitacionComponentComponent {
 
-  corriente = input<boolean>
+  corrienteGeneral = input<boolean>(false);
+  corrienteHabitacion = input<boolean>(false);
 
+  estadoPersiana = output<string>();
   
+  hayCorriente(): boolean { // hay corriente solo si hay general Y de habitación
+    return this.corrienteGeneral() && this.corrienteHabitacion();
+  }
 
+  onEstadoPersiana(estado: string) {
+    this.estadoPersiana.emit(estado);
+  }
 }
